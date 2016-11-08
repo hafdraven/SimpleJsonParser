@@ -3,3 +3,5 @@
 ################################################################################
 
 *.suo
+/JsonParserTest/bin/Debug
+/JsonParserTest/obj/Debug
