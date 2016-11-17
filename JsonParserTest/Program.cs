@@ -18,7 +18,7 @@ namespace JsonParserTest
             //Console.WriteLine(str);
             Queue<char> s = new Queue<char>(str.ToCharArray());
             JsonValue v= JsonValue.Parse(s);
-            Console.WriteLine(v.ToXmlText("root"));
+            Console.WriteLine(v.ToString());
             Console.ReadLine();
         }
 

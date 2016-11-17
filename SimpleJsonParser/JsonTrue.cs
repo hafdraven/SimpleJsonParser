@@ -14,10 +14,10 @@ namespace SimpleJsonParser
             return "true";
         }
 
-        public override string ToXmlText(string parentName)
-        {
-            return "true";
-        }
+        //public override string ToXmlText(string parentName)
+        //{
+        //    return "true";
+        //}
 
         public static new JsonTrue Parse(Queue<char> str)
         {
