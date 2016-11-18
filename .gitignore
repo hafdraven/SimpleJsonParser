@@ -9,3 +9,4 @@
 /SimpleJsonParser/bin/Debug
 /.vs/config
 /SqlServer.Json/obj/Debug
+*.jfm
