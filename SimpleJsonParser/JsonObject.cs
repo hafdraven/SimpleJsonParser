@@ -15,11 +15,6 @@ namespace SimpleJsonParser
             return "{" + string.Join(";", _values.Select(m => m.Key.ToString() + ":" + m.Value.ToString()).ToArray()) + "}";
         }
 
-        //public override string ToXmlText(string parentName = "root")
-        //{
-        //    return "<" + parentName + ">" + string.Concat(_values.Select(m => "<" + m.Key.ToXmlText() + ">" + m.Value.ToXmlText(m.Key.ToXmlText()) + "</" + m.Key.ToXmlText() + ">").ToArray()) + "</" + parentName + ">";
-        //}
-
         private static IEnumerable<KeyValuePair<JsonString, JsonValue>> ParseValues(Queue<char> str)
         {
             char c = str.Peek();
@@ -42,6 +37,24 @@ namespace SimpleJsonParser
         public static new JsonObject Parse(Queue<char> str)
         {
             return new JsonObject() { _values = ParseValues(str).ToDictionary(m => m.Key, m => m.Value) };
+        }
+
+        internal override JsonValue Query(JsonPath path)
+        {
+            JsonPathSection section = path.Current;
+            if (section != null && section.sectionName == "$") { path.Pop(); section = path.Current; }
+
+            if (section != null)
+            {
+                JsonString s = new JsonString(section.sectionName);
+                if (_values.ContainsKey(s))
+                {
+                    return _values[s].Query(path);
+                }
+                else if (path.PathMode == JsonPathEvaluationMode.Strict) throw new Exception("Path error in strict mode");
+                else return null;
+            }
+            return this;
         }
     }
 }

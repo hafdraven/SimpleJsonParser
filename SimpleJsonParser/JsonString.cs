@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SimpleJsonParser
 {
-    class JsonString : JsonValue, IComparable<JsonString>
+    class JsonString : JsonValue, IEquatable<JsonString>
     {
         internal string _value;
         public override string ToString()
@@ -14,10 +15,10 @@ namespace SimpleJsonParser
             return "\"" + _value + "\"";
         }
 
-        //public override string ToXmlText(string parentName="root")
-        //{
-        //    return _value;
-        //}
+        internal override JsonValue Query(JsonPath path)
+        {
+            return this;
+        }
 
         public JsonString(string str)
         {
@@ -43,9 +44,15 @@ namespace SimpleJsonParser
             return new JsonString(sb.ToString());
         }
 
-        public int CompareTo(JsonString other)
+        public override int GetHashCode()
         {
-            return _value.CompareTo(other._value);
+            return _value.GetHashCode();
+        }
+
+        public bool Equals(JsonString other)
+        {
+            return _value.Equals(other._value);
         }
     }
+
 }

@@ -13,10 +13,6 @@ namespace SimpleJsonParser
             return "false";
         }
 
-        //public override string ToXmlText(string parentName = "root")
-        //{
-        //    return "false";
-        //}
 
         public static new JsonFalse Parse(Queue<char> str)
         {
@@ -26,6 +22,11 @@ namespace SimpleJsonParser
                 return new JsonFalse();
             }
             else throw new Exception("Unknown value. Expected: false");
+        }
+
+        internal override JsonValue Query(JsonPath path)
+        {
+            return this;
         }
     }
 }

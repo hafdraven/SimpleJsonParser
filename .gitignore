@@ -6,3 +6,6 @@
 /JsonParserTest/bin/Debug
 /JsonParserTest/obj/Debug
 /SimpleJsonParser/obj/Debug
+/SimpleJsonParser/bin/Debug
+/.vs/config
+/SqlServer.Json/obj/Debug

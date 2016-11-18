@@ -10,40 +10,44 @@ namespace SimpleJsonParser
     class JsonArray : JsonValue
     {
         internal JsonValue[] _values;
+
+        internal override JsonValue Query(JsonPath path)
+        {
+            JsonPathSection section = path.Current;
+            if (section != null)
+            {
+                path.Pop();
+                if (section.indexerPesent)
+                {
+                    int indexer = section.indexerValue;
+                    if (indexer>=_values.Length)
+                    {
+                        if (path.PathMode == JsonPathEvaluationMode.Strict) throw new Exception("Path error in strict mode");
+                        else return null;
+                    }
+                    else
+                        return _values[indexer].Query(path);
+                }
+                else
+                {
+                    if (_values.Length > 0)
+                        return _values[0].Query(path);
+                    else
+                        if (path.Current == null) return this;
+                }
+            }
+            return this;
+        }
+
         public override string ToString()
         {
             return "[" + string.Join(",", _values.Select(m => m.ToString())) + "]";
         }
 
-        //public override string ToXmlText(string parentName="sjp:item")
-        //{
-        //    return string.Concat(_values.Select(m => "<" + parentName + (parentName == "sjp:item" ? " xmlns:sjp=\"SimpleJsonParser\"" : "") + ">" + m.ToXmlText() + "</" + parentName + ">"));
-        //}
-
         public JsonArray(IEnumerable<JsonValue> val)
         {
             _values = val.ToArray();
         }
-
-        //static IEnumerable<JsonValue> ParseXmlValues(XmlNodeList l)
-        //{ 
-        //    string name="";
-        //    if (l.Count > 0)
-        //    {
-        //        name = l[0].LocalName;
-        //        foreach (XmlNode x in l)
-        //        {
-        //            yield return JsonValue.ParseXml(x);
-        //        }
-        //    }
-        //    else
-        //        throw new Exception("Wrong xml node list for array");
-        //}
-
-        //public static new JsonArray ParseXml(XmlNodeList l)
-        //{
-        //    return new JsonArray(JsonArray.ParseXmlValues(l));
-        //}
 
         static IEnumerable<JsonValue> ParseValues(Queue<char> str)
         {

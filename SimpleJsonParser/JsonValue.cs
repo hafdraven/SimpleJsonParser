@@ -22,12 +22,21 @@ namespace SimpleJsonParser
             for (int i = 0; i < num; i++) str.Dequeue();
         }
 
-        public abstract JsonValue Query(string path);
-        public abstract JsonValue Value(string path);
-        public abstract JsonValue Modify(string path, string newValue);
+        public JsonValue Query(string path)
+        {
+            return Query(new JsonPath(path));
+        }
 
+        internal abstract JsonValue Query(JsonPath path);
+        //public abstract JsonValue Value(string path);
+        //public abstract JsonValue Modify(string path, string newValue);
 
-        public static JsonValue Parse(Queue<char> str)
+        public static JsonValue Parse(string str)
+        {
+            return Parse(new Queue<char>(str.ToCharArray()));
+        }
+
+        internal static JsonValue Parse(Queue<char> str)
         {
             char c = str.Peek();
             SkipWhiteSpace(str);

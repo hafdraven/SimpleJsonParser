@@ -14,11 +14,9 @@ namespace JsonParserTest
 
         static void Main(string[] args)
         {
-            string str=System.IO.File.ReadAllText("input.json");
-            //Console.WriteLine(str);
-            Queue<char> s = new Queue<char>(str.ToCharArray());
-            JsonValue v= JsonValue.Parse(s);
-            Console.WriteLine(v.ToString());
+            string str = System.IO.File.ReadAllText("input.json");
+            JsonValue v = JsonValue.Parse(str);
+            Console.WriteLine(v.Query("$.a").ToString());
             Console.ReadLine();
         }
 

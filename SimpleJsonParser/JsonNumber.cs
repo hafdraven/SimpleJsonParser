@@ -14,10 +14,10 @@ namespace SimpleJsonParser
             return _value.ToString();
         }
 
-        //public override string ToXmlText(string parentName = "root")
-        //{
-        //    return _value.ToString();
-        //}
+        internal override JsonValue Query(JsonPath path)
+        {
+            return this;
+        }
 
         public JsonNumber(double n)
         {

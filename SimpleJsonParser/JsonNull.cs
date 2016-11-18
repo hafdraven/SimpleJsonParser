@@ -13,10 +13,10 @@ namespace SimpleJsonParser
             return "null";
         }
 
-        //public override string ToXmlText(string parentName = "root")
-        //{
-        //    return "null";
-        //}
+        internal override JsonValue Query(JsonPath path)
+        {
+            return this;
+        }
 
         public static new JsonNull Parse(Queue<char> str)
         {
