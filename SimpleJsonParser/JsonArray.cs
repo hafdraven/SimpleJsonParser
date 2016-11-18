@@ -10,6 +10,10 @@ namespace SimpleJsonParser
     class JsonArray : JsonValue
     {
         internal JsonValue[] _values;
+        public override string ToString()
+        {
+            return "[" + string.Join(",", _values.Select(m => m.ToString())) + "]";
+        }
 
         internal override JsonValue Query(JsonPath path)
         {

@@ -7,10 +7,7 @@ namespace SimpleJsonParser
 {
     abstract public class JsonValue
     {
-        protected static void GetNextPathSection(string path)
-        {
-            
-        }
+        public abstract string ToXmlText(string parentName="root");
 
         protected static void SkipWhiteSpace(Queue<char> str)
         {
