@@ -7,8 +7,6 @@ namespace SimpleJsonParser
 {
     abstract public class JsonValue
     {
-        public abstract string ToXmlText(string parentName="root");
-
         protected static void SkipWhiteSpace(Queue<char> str)
         {
             while (char.IsWhiteSpace(str.Peek()) && str.Count > 0) { str.Dequeue(); }

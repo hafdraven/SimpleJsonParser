@@ -1,13 +1,14 @@
-﻿################################################################################
-# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
-################################################################################
-
-*.suo
-/JsonParserTest/bin/Debug
-/JsonParserTest/obj/Debug
-/SimpleJsonParser/obj/Debug
+﻿/SimpleJsonParser/bin
 /SimpleJsonParser/bin/Debug
-/.vs/config
-/SqlServer.Json/obj/Debug
+/SimpleJsonParser/obj
+/SqlServer.Json/bin
+/SqlServer.Json/bin/Debug
+/SqlServer.Json/obj
+/JsonParserTest/bin
+/JsonParserTest/bin/Debug
+/JsonParserTest/obj
+
+/.vs
 *.jfm
 *.dbmdl
+*.suo
