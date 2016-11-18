@@ -6,10 +6,10 @@ using Microsoft.SqlServer.Server;
 using SimpleJsonParser;
 
 [Serializable]
-[Microsoft.SqlServer.Server.SqlUserDefinedType(Format.Native,Name="JSON", IsFixedLength=false, IsByteOrdered=false)]
+[Microsoft.SqlServer.Server.SqlUserDefinedType(Format.Native, IsFixedLength=false, IsByteOrdered=false)]
 public struct SqlJson: INullable
 {
-    private JsonValue _value = null;
+    private JsonValue _value;
 
     public override string ToString()
     {
@@ -39,7 +39,7 @@ public struct SqlJson: INullable
     {
         if (s.IsNull)
             return Null;
-        SqlJson u = new SqlJson() { _value = JsonValue.Parse(new System.Collections.Generic.Queue<char>(s.ToString().ToCharArray())), _null=false};
+        SqlJson u = new SqlJson() { _value = JsonValue.Parse(s.ToString()), _null=false};
         // Put your code here
         return u;
     }

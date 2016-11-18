@@ -16,7 +16,7 @@ namespace JsonParserTest
         {
             string str = System.IO.File.ReadAllText("input.json");
             JsonValue v = JsonValue.Parse(str);
-            Console.WriteLine(v.Query("$.a").ToString());
+            Console.WriteLine(v.Query("strict f"));
             Console.ReadLine();
         }
 

@@ -58,6 +58,7 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="Security" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SimpleJsonParser\SimpleJsonParser.csproj">
@@ -75,5 +76,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="SqlJson.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="JsonValue.sql" />
+    <Build Include="Security\sqljson.sql" />
   </ItemGroup>
 </Project>

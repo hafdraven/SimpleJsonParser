@@ -49,6 +49,8 @@ namespace SimpleJsonParser
                 JsonString s = new JsonString(section.sectionName);
                 if (_values.ContainsKey(s))
                 {
+                    JsonValue v = _values[s];
+                    if (!(v is JsonArray)) path.Pop();
                     return _values[s].Query(path);
                 }
                 else if (path.PathMode == JsonPathEvaluationMode.Strict) throw new Exception("Path error in strict mode");

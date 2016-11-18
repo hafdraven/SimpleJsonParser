@@ -30,10 +30,11 @@ namespace SimpleJsonParser
                 }
                 else
                 {
-                    if (_values.Length > 0)
+                    if (path.Current == null) return this;
+                    else if (_values.Length > 0)
                         return _values[0].Query(path);
-                    else
-                        if (path.Current == null) return this;
+                    else if (path.PathMode == JsonPathEvaluationMode.Strict) throw new Exception("Path error in strict mode");
+                    else return null;
                 }
             }
             return this;
