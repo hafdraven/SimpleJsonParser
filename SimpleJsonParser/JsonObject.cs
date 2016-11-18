@@ -15,25 +15,10 @@ namespace SimpleJsonParser
             return "{" + string.Join(";", _values.Select(m => m.Key.ToString() + ":" + m.Value.ToString()).ToArray()) + "}";
         }
 
-        public override string ToXmlText(string parentName = "root")
-        {
-            return "<" + parentName + ">" + string.Concat(_values.Select(m => "<" + m.Key.ToXmlText() + ">" + m.Value.ToXmlText(m.Key.ToXmlText()) + "</" + m.Key.ToXmlText() + ">").ToArray()) + "</" + parentName + ">";
-        }
-
-        public static IEnumerable<KeyValuePair<JsonString,JsonValue>> ParseXmlValues(XmlNode x)
-        {
-            //foreach (XmlNode c in x.ChildNodes)
-            //{
-            //    switch (c.NodeType)
-            //    {
-            //        case XmlNodeType.Attribute:
-
-            //        case XmlNodeType.Element:
-            //            JsonString s = new JsonString(c.LocalName);
-            //    }
-            //}
-            yield return new KeyValuePair<JsonString, JsonValue>(new JsonString(""),new JsonNull());
-        }
+        //public override string ToXmlText(string parentName = "root")
+        //{
+        //    return "<" + parentName + ">" + string.Concat(_values.Select(m => "<" + m.Key.ToXmlText() + ">" + m.Value.ToXmlText(m.Key.ToXmlText()) + "</" + m.Key.ToXmlText() + ">").ToArray()) + "</" + parentName + ">";
+        //}
 
         private static IEnumerable<KeyValuePair<JsonString, JsonValue>> ParseValues(Queue<char> str)
         {

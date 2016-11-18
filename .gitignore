@@ -5,3 +5,4 @@
 *.suo
 /JsonParserTest/bin/Debug
 /JsonParserTest/obj/Debug
+/SimpleJsonParser/obj/Debug

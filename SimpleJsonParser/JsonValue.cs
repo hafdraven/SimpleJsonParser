@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Xml;
-using System.Threading.Tasks;
 
 namespace SimpleJsonParser
 {
     abstract public class JsonValue
     {
-        public abstract string ToXmlText(string parentName="root");
+        protected static void GetNextPathSection(string path)
+        {
+            
+        }
 
         protected static void SkipWhiteSpace(Queue<char> str)
         {
@@ -21,35 +22,10 @@ namespace SimpleJsonParser
             for (int i = 0; i < num; i++) str.Dequeue();
         }
 
-        public static JsonValue ParseXml(XmlNode node)
-        {
-            switch (node.NodeType)
-            {
-                case XmlNodeType.Text:
-                    double r;
-                    if (double.TryParse(node.InnerText,out r)) 
-                        return new JsonNumber(r); 
-                    else 
-                        switch (node.InnerText)
-                        {
-                            case "true":
-                                return new JsonTrue();
-                            case "false":
-                                return new JsonFalse();
-                            case "null":
-                                return new JsonNull();
-                            default:
-                                return new JsonString(node.InnerText);
-                        }
-                case XmlNodeType.Element:
-                    string name = node.LocalName;
-                    if (int.Parse(node.ParentNode.SelectSingleNode("count(" + name + ")").InnerText) > 0)
-                        return JsonArray.ParseXml(node.ParentNode.SelectNodes("./" + name));
-                    else
-                        return JsonObject.ParseXml(node);
-            }
-            return new JsonNull();
-        }
+        public abstract JsonValue Query(string path);
+        public abstract JsonValue Value(string path);
+        public abstract JsonValue Modify(string path, string newValue);
+
 
         public static JsonValue Parse(Queue<char> str)
         {

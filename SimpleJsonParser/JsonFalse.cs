@@ -13,10 +13,10 @@ namespace SimpleJsonParser
             return "false";
         }
 
-        public override string ToXmlText(string parentName = "root")
-        {
-            return "false";
-        }
+        //public override string ToXmlText(string parentName = "root")
+        //{
+        //    return "false";
+        //}
 
         public static new JsonFalse Parse(Queue<char> str)
         {

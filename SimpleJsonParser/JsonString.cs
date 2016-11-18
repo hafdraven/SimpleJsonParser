@@ -14,10 +14,10 @@ namespace SimpleJsonParser
             return "\"" + _value + "\"";
         }
 
-        public override string ToXmlText(string parentName="root")
-        {
-            return _value;
-        }
+        //public override string ToXmlText(string parentName="root")
+        //{
+        //    return _value;
+        //}
 
         public JsonString(string str)
         {
