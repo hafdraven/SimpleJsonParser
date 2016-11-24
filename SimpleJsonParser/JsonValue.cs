@@ -53,5 +53,20 @@ namespace SimpleJsonParser
                     return JsonNumber.Parse(str);
             }
         }
+        public static JsonValue ParseScalar(string value)
+        {
+            switch (value)
+            {
+                case "null": return new JsonNull();
+                case "true":return new JsonTrue();
+                case "false":return new JsonFalse();
+                default:
+                        double num = 0;
+                        if (double.TryParse(value,System.Globalization.NumberStyles.Any,System.Globalization.CultureInfo.InvariantCulture, out num))
+                            return new JsonNumber(num);
+                        else
+                            return new JsonString(value);
+            }
+        }
     }
 }

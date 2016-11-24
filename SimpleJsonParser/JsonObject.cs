@@ -12,7 +12,7 @@ namespace SimpleJsonParser
         internal Dictionary<JsonString, JsonValue> _values = new Dictionary<JsonString, JsonValue>();
         public override string ToString()
         {
-            return "{" + string.Join(";", _values.Select(m => m.Key.ToString() + ":" + m.Value.ToString()).ToArray()) + "}";
+            return "{" + string.Join(",", _values.Select(m => m.Key.ToString() + ":" + m.Value.ToString()).ToArray()) + "}";
         }
 
         private static IEnumerable<KeyValuePair<JsonString, JsonValue>> ParseValues(Queue<char> str)

@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <Name>SqlServer.Json</Name>
+    <Name>SqlServer.JsonExtensions</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{7b97f6e8-262c-487b-bc32-3f778050047d}</ProjectGuid>
@@ -12,8 +12,8 @@
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
-    <RootNamespace>SqlServer.Json</RootNamespace>
-    <AssemblyName>SqlServer.Json</AssemblyName>
+    <RootNamespace>SqlServer.JsonExtensions</RootNamespace>
+    <AssemblyName>SqlServer.JsonExtensions</AssemblyName>
     <ModelCollation>1033, CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
@@ -23,7 +23,7 @@
     <SqlServerVerification>False</SqlServerVerification>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
-    <DefaultSchema>sqljson</DefaultSchema>
+    <DefaultSchema>json</DefaultSchema>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -59,6 +59,8 @@
   <ItemGroup>
     <Folder Include="Properties" />
     <Folder Include="Security" />
+    <Folder Include="Types" />
+    <Folder Include="Aggregates" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SimpleJsonParser\SimpleJsonParser.csproj">
@@ -75,10 +77,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SqlJson.cs" />
+    <Build Include="Security\json.sql" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="JsonValue.sql" />
-    <Build Include="Security\sqljson.sql" />
+    <Compile Include="Aggregates\ScalarArray.cs" />
+    <Compile Include="Types\SqlJson.cs" />
+    <Compile Include="Aggregates\JsonArray.cs" />
   </ItemGroup>
 </Project>

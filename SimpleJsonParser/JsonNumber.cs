@@ -11,7 +11,7 @@ namespace SimpleJsonParser
         internal double _value;
         public override string ToString()
         {
-            return _value.ToString();
+            return _value.ToString(System.Globalization.CultureInfo.InvariantCulture);
         }
 
         internal override JsonValue Query(JsonPath path)
@@ -34,7 +34,7 @@ namespace SimpleJsonParser
                 str.Dequeue();
                 sb.Append(c);
             }
-            return new JsonNumber(double.Parse(sb.ToString()));
+            return new JsonNumber(double.Parse(sb.ToString(),System.Globalization.CultureInfo.InvariantCulture));
         }
     }
 }

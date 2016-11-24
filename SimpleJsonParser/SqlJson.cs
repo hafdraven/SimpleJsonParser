@@ -2,13 +2,15 @@ using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
+using System.IO;
 using Microsoft.SqlServer.Server;
 using SimpleJsonParser;
 
 [Serializable]
-[Microsoft.SqlServer.Server.SqlUserDefinedType(Format.Native, IsFixedLength=false, IsByteOrdered=false)]
-public struct SqlJson: INullable
+[SqlUserDefinedType(Format.UserDefined, IsFixedLength=false, IsByteOrdered=false,MaxByteSize = 4000)]
+public struct SqlJson: INullable, IBinarySerialize
 {
+    
     private JsonValue _value;
 
     public override string ToString()
@@ -43,8 +45,31 @@ public struct SqlJson: INullable
         // Put your code here
         return u;
     }
-    
- 
+
+    public SqlJson Query(SqlString query)
+    {
+        return new SqlJson(_value.Query(query.ToString()));
+    }
+
+    public void Read(BinaryReader r)
+    {
+        _null = r.ReadBoolean();
+        string str = r.ReadString();
+        _value = JsonValue.Parse(str);
+    }
+
+    public void Write(BinaryWriter w)
+    {
+        w.Write(_null);
+        w.Write(_value.ToString());
+    }
+
+    private SqlJson(JsonValue v)
+    {
+        _value = v;
+        _null = false;
+    }
+
     //  Private member
     private bool _null;
 }

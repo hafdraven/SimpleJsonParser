@@ -7,9 +7,9 @@ using System.Xml;
 
 namespace SimpleJsonParser
 {
-    class JsonArray : JsonValue
+    public class JsonArray : JsonValue
     {
-        internal JsonValue[] _values;
+        internal List<JsonValue> _values=new List<JsonValue>();
 
         internal override JsonValue Query(JsonPath path)
         {
@@ -20,7 +20,7 @@ namespace SimpleJsonParser
                 if (section.indexerPesent)
                 {
                     int indexer = section.indexerValue;
-                    if (indexer>=_values.Length)
+                    if (indexer>=_values.Count)
                     {
                         if (path.PathMode == JsonPathEvaluationMode.Strict) throw new Exception("Path error in strict mode");
                         else return null;
@@ -31,7 +31,7 @@ namespace SimpleJsonParser
                 else
                 {
                     if (path.Current == null) return this;
-                    else if (_values.Length > 0)
+                    else if (_values.Count > 0)
                         return _values[0].Query(path);
                     else if (path.PathMode == JsonPathEvaluationMode.Strict) throw new Exception("Path error in strict mode");
                     else return null;
@@ -47,7 +47,12 @@ namespace SimpleJsonParser
 
         public JsonArray(IEnumerable<JsonValue> val)
         {
-            _values = val.ToArray();
+            _values = new List<JsonValue>(val);
+        }
+
+        public JsonArray()
+        {
+            _values = new List<JsonValue>();
         }
 
         static IEnumerable<JsonValue> ParseValues(Queue<char> str)
@@ -66,6 +71,20 @@ namespace SimpleJsonParser
         public static new JsonArray Parse(Queue<char> str)
         {
             return new JsonArray(ParseValues(str));
+        }
+
+        public void Add(JsonValue v)
+        {
+            _values.Add(v);
+        }
+
+        public void Add(string v)
+        {
+            Add(JsonValue.Parse(v));
+        }
+        public void Merge(JsonArray v)
+        {
+            _values.AddRange(v._values);
         }
     }
 }
