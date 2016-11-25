@@ -80,8 +80,10 @@
     <Build Include="Security\json.sql" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Aggregates\ScalarArray.cs" />
+    <Compile Include="Aggregates\ScalarArray_AGG.cs" />
     <Compile Include="Types\SqlJson.cs" />
-    <Compile Include="Aggregates\JsonArray.cs" />
+    <Compile Include="Aggregates\JsonArray_AGG.cs" />
+    <Compile Include="Aggregates\ScalarObject_AGG.cs" />
+    <Compile Include="Aggregates\JsonObject_AGG.cs" />
   </ItemGroup>
 </Project>

@@ -7,8 +7,8 @@ using Microsoft.SqlServer.Server;
 using SimpleJsonParser;
 
 [Serializable]
-[Microsoft.SqlServer.Server.SqlUserDefinedAggregate(Format.UserDefined,MaxByteSize =8000)]
-public struct ScalarArray:IBinarySerialize
+[Microsoft.SqlServer.Server.SqlUserDefinedAggregate(Format.UserDefined, MaxByteSize =8000)]
+public struct JsonArray_AGG:IBinarySerialize
 {
     private JsonArray _value;
     public void Init()
@@ -16,26 +16,25 @@ public struct ScalarArray:IBinarySerialize
         _value = new JsonArray();
     }
 
-    public void Accumulate(SqlString Value)
+    public void Accumulate(SqlJson Value)
     {
-        if (!Value.IsNull)
-        _value.Add(JsonValue.ParseScalar(Value.ToString()));
+        _value.Add(Value._value);
     }
 
-    public void Merge (ScalarArray Group)
+    public void Merge (JsonArray_AGG Group)
     {
         _value.Add(Group._value);
     }
 
     public SqlJson Terminate ()
     {
-        // Put your code here
-        return new SqlJson(_value);
+       
+        return new SqlJson (_value);
     }
 
     public void Read(BinaryReader r)
     {
-        _value=(JsonArray)JsonArray.Parse(r.ReadString());
+        _value = (JsonArray)JsonArray.Parse(r.ReadString());
         if (_value == null) _value = new JsonArray();
     }
 
@@ -43,4 +42,5 @@ public struct ScalarArray:IBinarySerialize
     {
         w.Write(_value.ToString());
     }
+
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SimpleJsonParser
 {
-    class JsonNull : JsonValue
+    class JsonNull : JsonScalar
     {
         public override string ToString()
         {

@@ -45,6 +45,7 @@
     <Compile Include="JsonNumber.cs" />
     <Compile Include="JsonObject.cs" />
     <Compile Include="JsonPath.cs" />
+    <Compile Include="JsonScalar.cs" />
     <Compile Include="JsonString.cs" />
     <Compile Include="JsonTrue.cs" />
     <Compile Include="JsonValue.cs" />
