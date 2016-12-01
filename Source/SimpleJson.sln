@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleJson.Core", "SimpleJsonParser\SimpleJson.Core.csproj", "{33575045-3202-446B-9DF1-5109BEECCCF8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleJson.Core", "SimpleJson.Core\SimpleJson.Core.csproj", "{33575045-3202-446B-9DF1-5109BEECCCF8}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SimpleJson.SqlServer", "SqlServer.Json\SimpleJson.SqlServer.sqlproj", "{7B97F6E8-262C-487B-BC32-3F778050047D}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SimpleJson.SqlServer", "SimpleJson.SqlServer\SimpleJson.SqlServer.sqlproj", "{7B97F6E8-262C-487B-BC32-3F778050047D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
