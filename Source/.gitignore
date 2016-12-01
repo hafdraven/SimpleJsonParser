@@ -1,0 +1,10 @@
+﻿*/bin/*
+*/obj/*
+
+*/.vs
+*.jfm
+*.dbmdl
+*.suo
+*.dll
+*.pdb
+*.sqlproj.user
