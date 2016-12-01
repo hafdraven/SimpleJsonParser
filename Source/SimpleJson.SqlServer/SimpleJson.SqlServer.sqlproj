@@ -78,7 +78,7 @@
     <Compile Include="Aggregates\JsonObject_AGG.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SimpleJsonParser\SimpleJson.Core.csproj">
+    <ProjectReference Include="..\SimpleJson.Core\SimpleJson.Core.csproj">
       <Name>SimpleJson.Core</Name>
       <Project>{33575045-3202-446b-9df1-5109beecccf8}</Project>
       <Private>True</Private>
