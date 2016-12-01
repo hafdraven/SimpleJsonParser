@@ -3,11 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonParserTest", "JsonParserTest\JsonParserTest.csproj", "{5695304D-12EF-421F-AA99-EDEF00FA149D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleJson.Core", "SimpleJsonParser\SimpleJson.Core.csproj", "{33575045-3202-446B-9DF1-5109BEECCCF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleJsonParser", "SimpleJsonParser\SimpleJsonParser.csproj", "{33575045-3202-446B-9DF1-5109BEECCCF8}"
-EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SqlServer.JsonExtensions", "SqlServer.Json\SqlServer.JsonExtensions.sqlproj", "{7B97F6E8-262C-487B-BC32-3F778050047D}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SimpleJson.SqlServer", "SqlServer.Json\SimpleJson.SqlServer.sqlproj", "{7B97F6E8-262C-487B-BC32-3F778050047D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,10 +13,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5695304D-12EF-421F-AA99-EDEF00FA149D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5695304D-12EF-421F-AA99-EDEF00FA149D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5695304D-12EF-421F-AA99-EDEF00FA149D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5695304D-12EF-421F-AA99-EDEF00FA149D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{33575045-3202-446B-9DF1-5109BEECCCF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{33575045-3202-446B-9DF1-5109BEECCCF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33575045-3202-446B-9DF1-5109BEECCCF8}.Release|Any CPU.ActiveCfg = Release|Any CPU

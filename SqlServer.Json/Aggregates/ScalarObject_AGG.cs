@@ -1,13 +1,11 @@
 using System;
-using System.Data;
-using System.Data.SqlClient;
 using System.IO;
 using System.Data.SqlTypes;
 using Microsoft.SqlServer.Server;
-using SimpleJsonParser;
+using SimpleJson.Core;
 
 [Serializable]
-[Microsoft.SqlServer.Server.SqlUserDefinedAggregate(Format.UserDefined, MaxByteSize =8000)]
+[Microsoft.SqlServer.Server.SqlUserDefinedAggregate(Format.UserDefined, MaxByteSize = 8000)]
 public struct ScalarObject_AGG:IBinarySerialize
 {
     private JsonObject _value;

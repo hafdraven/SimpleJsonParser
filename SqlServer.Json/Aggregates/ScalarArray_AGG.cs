@@ -1,10 +1,8 @@
 using System;
-using System.Data;
-using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.IO;
 using Microsoft.SqlServer.Server;
-using SimpleJsonParser;
+using SimpleJson.Core;
 
 [Serializable]
 [Microsoft.SqlServer.Server.SqlUserDefinedAggregate(Format.UserDefined,MaxByteSize =8000)]

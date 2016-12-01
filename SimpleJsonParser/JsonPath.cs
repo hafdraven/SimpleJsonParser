@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace SimpleJsonParser
+namespace SimpleJson.Core
 {
     public class JsonPathSection
     {

@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <Name>SqlServer.JsonExtensions</Name>
+    <Name>SimpleJson.SqlServer</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{7b97f6e8-262c-487b-bc32-3f778050047d}</ProjectGuid>
@@ -12,8 +12,8 @@
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
-    <RootNamespace>SqlServer.JsonExtensions</RootNamespace>
-    <AssemblyName>SqlServer.JsonExtensions</AssemblyName>
+    <RootNamespace>SimpleJson.SqlServer</RootNamespace>
+    <AssemblyName>SimpleJson.SqlServer</AssemblyName>
     <ModelCollation>1033, CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
@@ -63,15 +63,6 @@
     <Folder Include="Aggregates" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SimpleJsonParser\SimpleJsonParser.csproj">
-      <Name>SimpleJsonParser</Name>
-      <Project>{33575045-3202-446b-9df1-5109beecccf8}</Project>
-      <Private>True</Private>
-      <IsModelAware>True</IsModelAware>
-      <GenerateSqlClrDdl>True</GenerateSqlClrDdl>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -85,5 +76,14 @@
     <Compile Include="Aggregates\JsonArray_AGG.cs" />
     <Compile Include="Aggregates\ScalarObject_AGG.cs" />
     <Compile Include="Aggregates\JsonObject_AGG.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SimpleJsonParser\SimpleJson.Core.csproj">
+      <Name>SimpleJson.Core</Name>
+      <Project>{33575045-3202-446b-9df1-5109beecccf8}</Project>
+      <Private>True</Private>
+      <IsModelAware>True</IsModelAware>
+      <GenerateSqlClrDdl>True</GenerateSqlClrDdl>
+    </ProjectReference>
   </ItemGroup>
 </Project>
