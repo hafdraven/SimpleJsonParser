@@ -2,6 +2,9 @@
 
 namespace SimpleJson.Core
 {
+    /// <summary>
+    /// Abstract JSON value class. All the Json-related classes inherit it
+    /// </summary>
     abstract public class JsonValue
     {
         protected static void SkipWhiteSpace(Queue<char> str)
