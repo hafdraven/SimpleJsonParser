@@ -37,6 +37,19 @@ namespace SimpleJson.Core
         }
 
         /// <summary>
+        /// gets the scalar value at the path
+        /// </summary>
+        /// <param name="path">path string</param>
+        /// <returns>scalar value</returns>
+        public string Value(string path)
+        {
+            JsonValue v = Query(new JsonPath(path));
+
+            if (v is JsonScalar) return v.ToString();
+            else return null;
+        }
+
+        /// <summary>
         /// Method placeholder for quering the json value
         /// </summary>
         /// <param name="path">JsonPath object with parsed path sections</param>
@@ -46,7 +59,7 @@ namespace SimpleJson.Core
         /// <summary>
         /// Parses the string and generates the JsonValue
         /// </summary>
-        /// <param name="str">inpul string, containing Json</param>
+        /// <param name="str">input string, containing Json</param>
         /// <returns>Parsed JsonValue</returns>
         public static JsonValue Parse(string str)
         {

@@ -48,6 +48,10 @@ public struct SqlJson: INullable, IBinarySerialize
     {
         return new SqlJson(_value.Query(query.ToString()));
     }
+    public SqlString Value(SqlString query)
+    {
+        return new SqlString(_value.Value(query.ToString()));
+    }
 
     public void Read(BinaryReader r)
     {
