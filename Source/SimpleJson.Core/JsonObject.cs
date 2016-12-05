@@ -4,20 +4,40 @@ using System.Linq;
 
 namespace SimpleJson.Core
 {
+    /// <summary>
+    /// Defines the merge methods for json objects
+    /// </summary>
     public enum JsonObjectMergeConflictOption : byte
     {
         TakeLocal = 0,
         TakeRemote = 1,
         MergeArray = 2
     }
+
+    /// <summary>
+    /// encapsulates json object
+    /// </summary>
     public class JsonObject : JsonValue
     {
+        /// <summary>
+        /// internal dictionary of object properties
+        /// </summary>
         internal Dictionary<JsonString, JsonValue> _values = new Dictionary<JsonString, JsonValue>();
+
+        /// <summary>
+        /// String serializer
+        /// </summary>
+        /// <returns>serialized string representation</returns>
         public override string ToString()
         {
             return "{" + string.Join(",", _values.Select(m => m.Key.ToString() + ":" + m.Value.ToString()).ToArray()) + "}";
         }
 
+        /// <summary>
+        /// parse method
+        /// </summary>
+        /// <param name="str">parsing character queue</param>
+        /// <returns>collection of object properties</returns>
         private static IEnumerable<KeyValuePair<JsonString, JsonValue>> ParseValues(Queue<char> str)
         {
             char c = str.Peek();
@@ -37,11 +57,21 @@ namespace SimpleJson.Core
             }
         }
 
+        /// <summary>
+        /// Parses string into Json Value
+        /// </summary>
+        /// <param name="str">input string, containing json value</param>
+        /// <returns>parsed json value</returns>
         public static new JsonObject Parse(Queue<char> str)
         {
             return new JsonObject() { _values = ParseValues(str).ToDictionary(m => m.Key, m => m.Value) };
         }
 
+        /// <summary>
+        /// Queries the Values using the path
+        /// </summary>
+        /// <param name="path">evaluated path</param>
+        /// <returns>Json value</returns>
         internal override JsonValue Query(JsonPath path)
         {
             JsonPathSection section = path.Current;
@@ -62,6 +92,12 @@ namespace SimpleJson.Core
             return this;
         }
 
+        /// <summary>
+        /// add an object property
+        /// </summary>
+        /// <param name="key">property key</param>
+        /// <param name="value">property value</param>
+        /// <param name="mergeOption">merge option if such property exists</param>
         public void Add(JsonString key, JsonValue value, JsonObjectMergeConflictOption mergeOption=JsonObjectMergeConflictOption.TakeRemote)
         {
             if (_values.ContainsKey(key))
@@ -100,6 +136,11 @@ namespace SimpleJson.Core
             }
         }
 
+        /// <summary>
+        /// merge two json objects
+        /// </summary>
+        /// <param name="obj">the object to merge with</param>
+        /// <param name="option">object merging option for properties with duplicate keys</param>
         public void Merge(JsonObject obj, JsonObjectMergeConflictOption option)
         {
             foreach (var p in obj._values)

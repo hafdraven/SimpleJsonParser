@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace SimpleJson.Core
 {
+    /// <summary>
+    /// encapsulates the part of json path
+    /// </summary>
     public class JsonPathSection
     {
         internal string sectionName;
@@ -20,11 +24,23 @@ namespace SimpleJson.Core
         Strict=1
     }
 
+    /// <summary>
+    /// encapsulates the json path functionality
+    /// </summary>
     public class JsonPath
     {
+        /// <summary>
+        /// Path evaluation mode
+        /// </summary>
         public JsonPathEvaluationMode PathMode = JsonPathEvaluationMode.Lax;
+        /// <summary>
+        /// inner section collection
+        /// </summary>
         private Queue<JsonPathSection> _sections = new Queue<JsonPathSection>();
 
+        /// <summary>
+        /// Current section
+        /// </summary>
         public JsonPathSection Current
         {
             get
@@ -36,12 +52,11 @@ namespace SimpleJson.Core
             }
         }
 
-        public void Pop()
-        {
-            _sections.Dequeue();
-        }
 
-
+        /// <summary>
+        /// initializer constructor
+        /// </summary>
+        /// <param name="path">represents path</param>
         public JsonPath(string path)
         {
             path = path.Trim();
